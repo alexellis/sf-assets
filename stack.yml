@@ -1,0 +1,20 @@
+provider:
+  name: faas
+  gateway: http://127.0.0.1:8080
+
+functions:
+  render:
+    lang: python3
+    handler: ./render
+    image: render
+    environment:
+      content_type: text/html
+
+  assets:
+    lang: python3
+    handler: ./assets
+    image: assets
+    environment:
+      content_type: application/json
+
+
