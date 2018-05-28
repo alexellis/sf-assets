@@ -9,7 +9,7 @@ functions:
     image: render
     environment:
       content_type: text/html
-      assets_url: "/assets"
+      assets_url: "/" # set to "/function/" when deploying locally
 
   assets:
     lang: python3

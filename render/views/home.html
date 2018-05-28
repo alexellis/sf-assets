@@ -27,7 +27,7 @@
 
         var filter = "Trash Can";
 
-        $.get("/function/assets?map_label=" + encodeURI(filter), function(data) {
+        $.get("URLassets?map_label=" + encodeURI(filter), function(data) {
             for(var i=0;i<=data.length;i++) {
                 L.marker([data[i].lat, data[i].lng]).addTo(mymap)
                 .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
