@@ -25,16 +25,14 @@
         var mymap = L.map('mapid').setView(sf, 16);
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                var mylocation = [sf[0],sf[1]];
-
-                mylocation[0] = position.coords.latitude;
-                mylocation[1] = position.coords.longitude;
+                var mylocation = [position.coords.latitude,position.coords.longitude];
+                
                 mymap.setView(mylocation, 16);
 
                 console.log("Location found at: "+sf)
                 $("#action").text("Found location.")
 
-                var circle = L.circle([sf[0], sf[1]], {
+                var circle = L.circle(mylocation, {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.3,
