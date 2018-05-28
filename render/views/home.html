@@ -27,6 +27,13 @@
                 sf[0] = position.coords.latitude;
                 sf[1] = position.coords.longitude;
                 console.log("Location found at: "+sf)
+
+                var circle = L.circle([sf[0], sf[1]], {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.3,
+                    radius: 300
+                }).bindPopup("You are here").addTo(mymap);
                 
                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
