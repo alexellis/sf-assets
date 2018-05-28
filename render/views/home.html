@@ -16,6 +16,7 @@
 </head>
 <body>
     <h2>SF Data browser</h2>
+    <span id="action">Finding location..</span>
     <div id="mapid"></div>
     <p>Powered by OpenFaaS &reg;</p>
     <script>
@@ -28,6 +29,7 @@
                 var mymap = L.map('mapid').setView(sf, 16);
 
                 console.log("Location found at: "+sf)
+                $("#action").text("Found location.")
 
                 var circle = L.circle([sf[0], sf[1]], {
                     color: 'red',
@@ -52,7 +54,7 @@
         } else {
             var mymap = L.map('mapid').setView(sf, 16);
             console.log("Default location at: "+sf)
-
+            $("#action").text("Location unavailable.")
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(mymap);
