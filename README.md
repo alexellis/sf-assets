@@ -13,3 +13,4 @@ assets - queries built-in CSV data-set
 
 Inspiration - idea from Robert Malmstein - Holberton School.
 
+Endpoint - openfaas cloud
