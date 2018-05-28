@@ -9,6 +9,7 @@ functions:
     image: render
     environment:
       content_type: text/html
+      assets_url: "/assets"
 
   assets:
     lang: python3
@@ -16,5 +17,6 @@ functions:
     image: assets
     environment:
       content_type: application/json
+
 
 
