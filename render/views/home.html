@@ -22,11 +22,14 @@
     <script>
         var sf = [37.784172, -122.401558];
 
+        var mymap = L.map('mapid').setView(sf, 16);
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
-                sf[0] = position.coords.latitude;
-                sf[1] = position.coords.longitude;
-                var mymap = L.map('mapid').setView(sf, 16);
+                var mylocation = [sf[0],sf[1]];
+
+                mylocation[0] = position.coords.latitude;
+                mylocation[1] = position.coords.longitude;
+                mymap.setView(mylocation, 16);
 
                 console.log("Location found at: "+sf)
                 $("#action").text("Found location.")
@@ -52,7 +55,7 @@
                 });
             });
         } else {
-            var mymap = L.map('mapid').setView(sf, 16);
+            mymap.setView(sf, 16);
             console.log("Default location at: "+sf)
             $("#action").text("Location unavailable.")
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
