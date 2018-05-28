@@ -19,20 +19,43 @@
     <div id="mapid"></div>
 
     <script>
-        var mymap = L.map('mapid').setView([37.784172, -122.401558], 16);
+        var sf = [37.784172, -122.401558];
 
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var mymap = L.map('mapid').setView(sf, 16);
+                sf[0] = position.coords.latitude;
+                sf[1] = position.coords.longitude;
+                
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mymap);
 
-        var filter = "Trash Can";
+                var filter = "Trash Can";
 
-        $.get("URLassets?map_label=" + encodeURI(filter), function(data) {
-            for(var i=0;i<=data.length;i++) {
-                L.marker([data[i].lat, data[i].lng]).addTo(mymap)
-                .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
-            }
-        });
+                $.get("URLassets?map_label=" + encodeURI(filter), function(data) {
+                    for(var i=0;i<=data.length;i++) {
+                        L.marker([data[i].lat, data[i].lng]).addTo(mymap)
+                        .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
+                    }
+                });
+            });
+        } else {
+            var mymap = L.map('mapid').setView(sf, 16);
+            
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var filter = "Trash Can";
+
+            $.get("URLassets?map_label=" + encodeURI(filter), function(data) {
+                for(var i=0;i<=data.length;i++) {
+                    L.marker([data[i].lat, data[i].lng]).addTo(mymap)
+                    .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
+                }
+            });
+        }
 
     </script>
 </body>
