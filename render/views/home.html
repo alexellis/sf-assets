@@ -76,10 +76,17 @@
                 }
 
                 $.get(assetsUrl + "?map_label=" + encodeURI(filter), function(data) {
+
+                    var markers = L.markerClusterGroup();
+
                     for(var i=0;i<=data.length-1;i++) {
-                        L.marker([data[i].lat, data[i].lng]).addTo(mymap)
-                        .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
+                        var marker = L.marker([data[i].lat, data[i].lng]);
+                        marker.bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
+
+                        markers.addLayer(marker);
                     }
+                    map.addLayer(markers);
+
                 });
             });
         } else {
