@@ -45,12 +45,12 @@
                 }).addTo(mymap);
 
                 var filter = "Trash Can";
-                var url = "/assets"
+                var assetsUrl = "/assets"
                 if(document.URL.indexOf("/function/") > -1) {
-                    url = "/function/alexellis-assets"
+                    assetsUrl = "/function/alexellis-assets"
                 }
 
-                $.get("URLassets?map_label=" + encodeURI(filter), function(data) {
+                $.get(assetsUrl + "?map_label=" + encodeURI(filter), function(data) {
                     for(var i=0;i<=data.length-1;i++) {
                         L.marker([data[i].lat, data[i].lng]).addTo(mymap)
                         .bindPopup(data[i]["Map Label"]  + " - " + data[i]["Asset Name"] + " (" +  data[i]["Quantity"] +")");
