@@ -3,7 +3,9 @@ import json
 from urllib import parse
 
 def handle(req):
-    """handle a request to the function
+    """handle a request to the function, set map_label querystring
+    to filter based upon a "Map Label" within the CSV file - if undefined
+    then a wildcard will match
     Args:
         req (str): request body
     """
@@ -17,7 +19,7 @@ def handle(req):
         if len(map_label_values) > 0:
             map_label = map_label_values[0]
 
-    file_name="function/data/Assets_Maintained_by_the_Recreation_and_Parks_Department.csv"
+    file_name = "function/data/Assets_Maintained_by_the_Recreation_and_Parks_Department.csv"
 
     rows = []
     with open(file_name) as f:
