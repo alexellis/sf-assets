@@ -18,5 +18,3 @@ functions:
     environment:
       content_type: application/json
 
-
-
